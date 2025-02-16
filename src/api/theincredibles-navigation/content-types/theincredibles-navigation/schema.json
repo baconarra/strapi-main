@@ -1,0 +1,84 @@
+{
+  "kind": "singleType",
+  "collectionName": "theincredibles-navigations",
+  "info": {
+    "singularName": "theincredibles-navigation",
+    "pluralName": "theincredibles-navigations",
+    "displayName": "TheIncredibles-Navigation",
+    "description": "Auto generated from master Navigation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "navbar": {
+      "type": "dynamiczone",
+      "components": [
+        "navigation.nav-text",
+        "navigation.nav-group"
+      ]
+    },
+    "footer": {
+      "type": "dynamiczone",
+      "components": [
+        "navigation.nav-text",
+        "navigation.nav-group"
+      ]
+    },
+    "createdAt": {
+      "type": "datetime"
+    },
+    "updatedAt": {
+      "type": "datetime"
+    },
+    "publishedAt": {
+      "type": "datetime",
+      "configurable": false,
+      "writable": true,
+      "visible": false
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "useJoinTable": false,
+      "private": true
+    },
+    "updatedBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user",
+      "configurable": false,
+      "writable": false,
+      "visible": false,
+      "useJoinTable": false,
+      "private": true
+    },
+    "locale": {
+      "writable": true,
+      "private": true,
+      "configurable": false,
+      "visible": false,
+      "type": "string"
+    },
+    "localizations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::navigation.navigation",
+      "writable": false,
+      "private": true,
+      "configurable": false,
+      "visible": false,
+      "unstable_virtual": true,
+      "joinColumn": {
+        "name": "document_id",
+        "referencedColumn": "document_id",
+        "referencedTable": "navigations"
+      }
+    }
+  }
+}

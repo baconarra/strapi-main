@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_navigation_nav_groups",
+  "info": {
+    "displayName": "Nav Group"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.nav-text"
+    }
+  }
+}
