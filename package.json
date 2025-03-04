@@ -20,8 +20,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "6",
-    "strapi-plugin-netlify-deployments": "^2.0.2",
     "strapi-plugin-populate-deep": "^3.0.1",
+    "strapi-plugin-publisher": "^1.5.7",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {

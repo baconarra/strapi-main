@@ -1,20 +1,6 @@
 module.exports = ({ env }) => ({
   email: {
     config: {
-      "netlify-deployments": {
-        enabled: true,
-        config: {
-          accessToken: env("NETLIFY_ACCESS_TOKEN"),
-          sites: [
-            {
-              name: 'My Site',
-              id: env("NETLIFY_SITE_ID"),
-              buildHook: `https://api.netlify.com/build_hooks/${env("NETLIFY_BUILD_HOOK_ID")}`,
-              branch: 'main' // optional
-            }
-          ]
-        },
-      },  
       // provider: "nodemailer",
       // providerOptions: {
       //   host: env("SMTP_HOST", "smtp.example.com"),
