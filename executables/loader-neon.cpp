@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _WIN32
+    #define CLEAR_SCREEN "cls"
+    #define REMOVE_NODE_MODULES "rd /s /q node_modules"
+#else
+    #define CLEAR_SCREEN "clear"
+    #define REMOVE_NODE_MODULES "rm -rf node_modules"
+#endif
+
 int main(int argc, char *argv[]) {
     int ret_code;
     int prompt = 0;
@@ -12,13 +20,13 @@ int main(int argc, char *argv[]) {
     
     while (1) {
         printf("Checking file integrity...\n");
-		system("cls");
+        system(CLEAR_SCREEN);
         ret_code = system("yarn develop --no-watch-admin");
 
         if (ret_code != 0) {
-            printf("An error occurred, reinstalling strapi...\n");
-            system("rd /s /q node_modules");
-        	system("yarn");
+            printf("An error occurred, reinstalling Strapi...\n");
+            system(REMOVE_NODE_MODULES);
+            system("yarn");
         }
 
         if (prompt) {
@@ -34,6 +42,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
-
-

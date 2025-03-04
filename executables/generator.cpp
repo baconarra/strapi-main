@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <Windows.h>
-#include <unistd.h>
+#include <unistd.h>  // Unix standard functions
+
+#ifdef _WIN32
+    #include <windows.h>  // Windows-specific functions
+    #define CLEAR_SCREEN "cls"
+    #define SLEEP(ms) Sleep(ms)  // Sleep in milliseconds
+#else
+    #define CLEAR_SCREEN "clear"
+    #define SLEEP(ms) sleep(ms)  // Sleep in seconds
+#endif
 
 #define AUTH_FILE "AUTH"
 #define DEFAULT_URL "http://localhost:1337/api"
@@ -102,9 +110,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-	system("cls");
-	puts("Server is restarting, please wait...");
-	sleep(40);
+    system(CLEAR_SCREEN);
+    puts("The server should be restarting now...");
+    puts("Press ENTER once the server is up again");
+    getchar();
 
     char generate_company_data_command[BUFFER_SIZE];
     snprintf(generate_company_data_command, BUFFER_SIZE,
@@ -123,4 +132,3 @@ int main() {
     getchar();
     return 0;
 }
-
