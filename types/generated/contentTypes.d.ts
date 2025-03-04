@@ -727,7 +727,7 @@ export interface PluginPublisherAction extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    entityId: Schema.Attribute.Integer;
+    entityId: Schema.Attribute.String;
     entitySlug: Schema.Attribute.String;
     executeAt: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
