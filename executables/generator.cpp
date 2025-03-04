@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <Windows.h>
-#include <unistd.h>
+#include <unistd.h> 
+
+#ifdef _WIN32
+    #include <windows.h>
+    #define CLEAR_SCREEN "cls"
+#else
+    #define CLEAR_SCREEN "clear"
+#endif
 
 #define AUTH_FILE "AUTH"
 #define DEFAULT_URL "http://localhost:1337/api"
@@ -21,7 +27,7 @@ void read_auth_key(char *auth_key) {
         exit(EXIT_FAILURE);
     }
 
-    strtok(auth_key, "\n"); // Remove newline character if present
+    strtok(auth_key, "\n");
     fclose(auth_file);
 }
 
@@ -32,7 +38,7 @@ void get_input(const char *prompt, char *buffer, size_t size, const char *defaul
     if (buffer[0] == '\n' && default_value) {
         strncpy(buffer, default_value, size);
     } else {
-        strtok(buffer, "\n"); // Remove newline character
+        strtok(buffer, "\n");
     }
 }
 
@@ -77,7 +83,7 @@ int main() {
 
     read_auth_key(auth_key);
 
-    get_input("Enter API URL (default: http://localhost:1337/api): ", api_url, BUFFER_SIZE, DEFAULT_URL);
+    get_input("Enter API URL (default: http://localhost:1340/api): ", api_url, BUFFER_SIZE, DEFAULT_URL);
 
     get_input("Enter Company Name: ", company_name, BUFFER_SIZE, NULL);
     validate_not_empty("Company Name", company_name);
@@ -102,9 +108,10 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-	system("cls");
-	puts("Server is restarting, please wait...");
-	sleep(40);
+    system(CLEAR_SCREEN);
+    puts("The server should be restarting now...");
+    puts("Press ENTER once the server is up again");
+    getchar();
 
     char generate_company_data_command[BUFFER_SIZE];
     snprintf(generate_company_data_command, BUFFER_SIZE,
@@ -123,4 +130,3 @@ int main() {
     getchar();
     return 0;
 }
-
